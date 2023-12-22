@@ -98,6 +98,7 @@ type Ctx struct {
 	fasthttp            *fasthttp.RequestCtx // Reference to *fasthttp.RequestCtx
 	matched             bool                 // Non use route matched
 	viewBindMap         sync.Map             // Default view map to bind template engine
+
 }
 
 // TLSHandler object
@@ -1568,10 +1569,6 @@ func (c *Ctx) RedirectBack(fallback string, status ...int) error {
 		location = fallback
 	}
 	return c.Redirect(location, status...)
-}
-
-func (c *Ctx) GetTemplate(templatePath string) (*jet.Template, error) {
-	return c.app.config.Views.GetTemplate(templatePath)
 }
 
 // Render a template with data and sends a text/html response.
